@@ -1,0 +1,55 @@
+{
+    "pessoas": [
+      {
+        "nome": "Maria Silva",
+        "pais": "Brasil",
+        "cidade": "São Paulo"
+      },
+      {
+        "nome": "John Smith",
+        "pais": "Estados Unidos",
+        "cidade": "Nova York"
+      },
+      {
+        "nome": "Ana García",
+        "pais": "Espanha",
+        "cidade": "Madri"
+      },
+      {
+        "nome": "Liu Wei",
+        "pais": "China",
+        "cidade": "Pequim"
+      },
+      {
+        "nome": "Fatima Al-Farsi",
+        "pais": "Emirados Árabes Unidos",
+        "cidade": "Dubai"
+      },
+      {
+        "nome": "Jean Dupont",
+        "pais": "França",
+        "cidade": "Paris"
+      },
+      {
+        "nome": "Sara Müller",
+        "pais": "Alemanha",
+        "cidade": "Berlim"
+      },
+      {
+        "nome": "Yuki Tanaka",
+        "pais": "Japão",
+        "cidade": "Tóquio"
+      },
+      {
+        "nome": "Liam O'Connor",
+        "pais": "Irlanda",
+        "cidade": "Dublin"
+      },
+      {
+        "nome": "Carlos Mendoza",
+        "pais": "México",
+        "cidade": "Cidade do México"
+      }
+    ]
+  }
+  
