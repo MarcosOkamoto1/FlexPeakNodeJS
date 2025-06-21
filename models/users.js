@@ -1,14 +1,13 @@
 "use strict";
 const { Model } = require("sequelize");
+const bcrypt = require("bcrypt");
 module.exports = (sequelize, DataTypes) => {
   class Users extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       // define association here
+    }
+    async validarSenha(senhaDigitada) {
+      return await bcrypt.compare(senhaDigitada, this.senha);
     }
   }
   Users.init(
@@ -56,6 +55,18 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Users",
+      hooks: {
+        beforeCreate: async (user, options) => {
+          const salt = await bcrypt.genSalt(10);
+          user.senha = await bcrypt.hash(user.senha, salt);
+        },
+        beforeUpdate: async (user, options) => {
+          if (user.changed("senha")) {
+            const salt = await bcrypt.genSalt(10);
+            user.senha = await bcrypt.hash(user.senha, salt);
+          }
+        },
+      },
     }
   );
   return Users;
