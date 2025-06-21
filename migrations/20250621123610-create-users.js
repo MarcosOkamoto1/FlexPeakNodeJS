@@ -22,7 +22,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       tipo_usuario: {
-        type: Sequelize_ENUM('locador', 'locatario'),
+        type: Sequelize.ENUM('locador', 'locatario'),
         allowNull: false
       },
       createdAt: {
