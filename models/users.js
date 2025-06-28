@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       unique:true,
       validate:{
         is:{
-          args: '/^\d{11}$', //regex
+          args: /^d{11}$/, //regex
           msg: 'O CPF deve conter 11 dígitos numéricos'
         }
       }
