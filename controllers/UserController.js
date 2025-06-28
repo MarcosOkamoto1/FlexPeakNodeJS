@@ -13,7 +13,7 @@ module.exports = {
         if(emailExistente){
             return res.status(400).json({message: 'email já cadastrado"'})
         }
-        const user = Users.create({nome, cpf, email, senha, tipo_usuario})
+        const user = await Users.create({nome, cpf, email, senha, tipo_usuario})
         const {senha: _, ...userSemSenha} = user.toJSON()
         return res.status(201).json(userSemSenha)
 
@@ -78,7 +78,7 @@ module.exports = {
                 return res.status(400).json({message: "Informe o nome na query"})
             }
             const users = await Users.findAll({
-                where:{[Op.like]: `%${nome}%`}, 
+                where:{nome:{[Op.like]: `%${nome}%`}}, 
                 attributes: {exclude:['senha']}
             })
             if (!users.length === 0){
