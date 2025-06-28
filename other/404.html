@@ -3,18 +3,74 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Página não encontrada - Ilha dos Sonhos</title>
+  <title>Página não encontrada | Café Aurora</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background-color: #f8f5f0;
+      color: #4b3b2c;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+    }
+
+    h1 {
+      font-size: 4em;
+      margin: 0;
+    }
+
+    p {
+      font-size: 1.3em;
+      margin: 20px 0;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      margin: 20px 0;
+    }
+
+    a.button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #4b3b2c;
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      transition: background 0.3s ease;
+    }
+
+    a.button:hover {
+      background-color: #2e231b;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 3em;
+      }
+      p {
+        font-size: 1.1em;
+      }
+    }
+  </style>
 </head>
-<body style="margin: 0; font-family: 'Segoe UI', sans-serif; background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e'); background-size: cover; background-position: center; height: 100vh; display: flex; justify-content: center; align-items: center; color: #fff; text-align: center;">
-
-  <div style="background-color: rgba(0, 0, 0, 0.6); padding: 3rem; border-radius: 15px; max-width: 600px;">
-    <h1 style="font-size: 5rem; margin-bottom: 1rem;">404</h1>
-    <h2 style="font-size: 2rem; margin-bottom: 1rem;">Você está à deriva...</h2>
-    <p style="font-size: 1.2rem; margin-bottom: 2rem;">
-      A página que você procura foi levada pela maré ou talvez nunca existiu!
-    </p>
-    <a href="ilhadossonhos" style="background-color: #00bcd4; padding: 1rem 2rem; color: white; text-decoration: none; font-weight: bold; border-radius: 8px;">Voltar para a Ilha</a>
+<body>
+  <div class="container">
+    <h1>404</h1>
+    <p>Oops! A página que você procura evaporou como um bom café.</p>
+    <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Café derramado"/>
+    <a href="cafeaurora" class="button">Voltar para o Início</a>
   </div>
-
 </body>
 </html>

@@ -1,17 +1,13 @@
-const express = require("express");
-const path = require("path");
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
+const path = require('path')
 
-router.get("/", (req, res) => {
-  res.send("Aplicação em construção");
-});
+router.get ('/', (req, res) => {
+    res.send ("Aplicação em Construção")
+})
+//http://localhost:3000/flex
+router.get ('/flex', (req, res) => {
+    res.sendFile(path.resolve('people.json'))
+})
 
-router.get("/flex", (req, res) => {
-  res.sendFile(path.resolve('./people.json'));
-});
-
-router.use((req, res, next) => {
-  res.status(404).send("404 Não Encontrado");
-});
-
-module.exports = router;
+module.exports = router

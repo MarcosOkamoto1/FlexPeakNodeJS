@@ -1,55 +1,53 @@
-{
-    "pessoas": [
-      {
-        "nome": "Maria Silva",
-        "pais": "Brasil",
-        "cidade": "São Paulo"
-      },
-      {
-        "nome": "John Smith",
-        "pais": "Estados Unidos",
-        "cidade": "Nova York"
-      },
-      {
-        "nome": "Ana García",
-        "pais": "Espanha",
-        "cidade": "Madri"
-      },
-      {
-        "nome": "Liu Wei",
-        "pais": "China",
-        "cidade": "Pequim"
-      },
-      {
-        "nome": "Fatima Al-Farsi",
-        "pais": "Emirados Árabes Unidos",
-        "cidade": "Dubai"
-      },
-      {
-        "nome": "Jean Dupont",
-        "pais": "França",
-        "cidade": "Paris"
-      },
-      {
-        "nome": "Sara Müller",
-        "pais": "Alemanha",
-        "cidade": "Berlim"
-      },
-      {
-        "nome": "Yuki Tanaka",
-        "pais": "Japão",
-        "cidade": "Tóquio"
-      },
-      {
-        "nome": "Liam O'Connor",
-        "pais": "Irlanda",
-        "cidade": "Dublin"
-      },
-      {
-        "nome": "Carlos Mendoza",
-        "pais": "México",
-        "cidade": "Cidade do México"
-      }
-    ]
-  }
+[
+    {
+      "nome": "Carlos Menezes",
+      "cidade": "Lisboa",
+      "pais": "Portugal"
+    },
+    {
+      "nome": "Aisha Khan",
+      "cidade": "Lahore",
+      "pais": "Paquistão"
+    },
+    {
+      "nome": "John Smith",
+      "cidade": "Chicago",
+      "pais": "Estados Unidos"
+    },
+    {
+      "nome": "Sofia Rodríguez",
+      "cidade": "Buenos Aires",
+      "pais": "Argentina"
+    },
+    {
+      "nome": "Mei Lin",
+      "cidade": "Xangai",
+      "pais": "China"
+    },
+    {
+      "nome": "Lucas Oliveira",
+      "cidade": "São Paulo",
+      "pais": "Brasil"
+    },
+    {
+      "nome": "Fatima Zahra",
+      "cidade": "Casablanca",
+      "pais": "Marrocos"
+    },
+    {
+      "nome": "Emma Dubois",
+      "cidade": "Lyon",
+      "pais": "França"
+    },
+    {
+      "nome": "Takashi Yamamoto",
+      "cidade": "Osaka",
+      "pais": "Japão"
+    },
+    {
+      "nome": "Mia Müller",
+      "cidade": "Berlim",
+      "pais": "Alemanha"
+    }
+  ]
   

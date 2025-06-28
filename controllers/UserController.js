@@ -1,104 +1,129 @@
-const { Users } = require("../models");
-const { Op, where } = require("sequelize");
+const { Users } = require('../models')
+const { Op } = require('sequelize')
 
 module.exports = {
-  async createUser(req, res) {
-    try {
-      const { nome, cpf, email, senha, tipo_usuario } = req.body;
-      if (!["locador", "locatario"].includes(tipo_usuario)) {
-        return res.status(400).json({
-          message: 'Tipo de usuário inválido. Use "Locador" ou "Locatario"',
-        });
-      }
-      const emailExistente = await Users.findOne({ where: { email } });
-      if (emailExistente) {
-        return res.status(400).json({
-          message: "Email já cadastrado!",
-        });
-      }
-      const user = Users.create({ nome, cpf, email, senha, tipo_usuario });
-      const { senha: _, ...userSemSenha } = user.toJSON();
-      return res.status(201).json(userSemSenha);
-    } catch (error) {
-      return res
-        .status(500)
-        .json({ message: "Erro ao criar usuário ", error: error.message });
-    }
-  },
-  async getAllUsers(req,res){
-    try{
-        const users = await Users.findAll({
-            attributes: {exclude:['senha']}
-        })
-        return res.json(users)
-    }
-    catch (error) {
-        return res
-          .status(500)
-          .json({ message: "Erro ao buscar usuário ", error: error.message });
-      }
-},
-async getUserById(req,res){
-    try{
-        const {id} = req.params 
-        const user = await Users.findByPk(id, {
-            attributes: {exclude:['senha']}
-        })
-        if (!user){
-            return res.status(404).json({message: "Usuário não encontrado."})
+    // create - cadastrar usuário
+    async createUser (req, res){
+        try{
+            const {nome, cpf, email, senha, tipo_usuario} = req.body
+        if (!['locador','locatario'].includes(tipo_usuario)){
+            return res.status(400).json({message: 'Tipo de usuário inválido, Use "locador" ou "locatario"'})
         }
-        return res.json(user)
-    }
-    catch (error) {
-        return res
-          .status(500)
-          .json({ message: "Erro ao buscar usuário ", error: error.message });
-      }
- 
-},
-async findByEmail(req,res){
-    try{
-        const {email} = req.query
-        if(!email){
-            return res.status(400).json({message: "Informar o Email na query"})
-        } 
-        const user = await Users.findOne({
-            where:{email},
-            attributes: {exclude:['senha']}
-        })
-        if (!user){
-            return res.status(404).json({message: "Usuário não encontrado."})
+        const emailExistente = await Users.findOne({where: {email}})
+        if(emailExistente){
+            return res.status(400).json({message: 'email já cadastrado"'})
         }
-        return res.json(user)
-    }
-    catch (error) {
-        return res
-          .status(500)
-          .json({ message: "Erro ao buscar usuário ", error: error.message });
-      }
- 
-},
-async findByName(req,res){
-    try{
-        const {nome} = req.query
-        if(!nome){
-            return res.status(400).json({message: "Informar o nome na query"})
-        } 
-        const users = await Users.findAll({
-            where:{[Op.like]: `%${nome}%`},
-            attributes: {exclude:['senha']}
-        })
-        if (!users.length === 0){
-            return res.status(404).json({message: "Nenhum usuário não encontrado."})
-        }
-        return res.json(user)
-    }
-    catch (error) {
-        return res
-          .status(500)
-          .json({ message: "Erro ao buscar usuário ", error: error.message });
-      }
- 
-}
+        const user = Users.create({nome, cpf, email, senha, tipo_usuario})
+        const {senha: _, ...userSemSenha} = user.toJSON()
+        return res.status(201).json(userSemSenha)
 
-};
+        }catch(error){
+            return res.status(500).json({message: 'Erro ao criar usuário: ', error: error.message})
+        }
+    },
+
+    //READ - Listar Todos os Usuários
+    async getAllUsers(req, res){
+        try{
+            const users = await Users.findAll({
+                attributes: {exclude:['senha']}
+            })
+            return res.json(users)
+
+        }catch(error){
+            return res.status(500).json({message: 'Erro ao buscar usuários: ', error: error.message})
+        }
+    },
+    //READ - Buscar usuário pelo ID
+    async getUserById(req, res){
+        try{
+            const {id} = req.params
+            const user = await Users.findByPk(id, {
+                attributes: {exclude:['senha']}
+            })
+            if (!user){
+                return res.status(404).json({message: "Usuário não encontrado."})
+            }
+            return res.json(user)
+
+        }catch(error){
+            return res.status(500).json({message: 'Erro ao buscar usuário: ', error: error.message})
+        }
+    },
+    //READ - Buscar usuário por email
+    async findByEmail(req, res){
+        try{
+            const {email} = req.query
+            if (!email){
+                return res.status(400).json({message: "Informe o email na query"})
+            }
+            const user = await Users.findOne({
+                where:{email}, 
+                attributes: {exclude:['senha']}
+            })
+            if (!user){
+                return res.status(404).json({message: "Usuário não encontrado."})
+            }
+            return res.json(user)
+
+        }catch(error){
+            return res.status(500).json({message: 'Erro ao buscar usuário: ', error: error.message})
+        }
+    },
+    //READ - Buscar usuário por nome
+    async findByName(req, res){
+        try{
+            const {nome} = req.query
+            if (!nome){
+                return res.status(400).json({message: "Informe o nome na query"})
+            }
+            const users = await Users.findAll({
+                where:{[Op.like]: `%${nome}%`}, 
+                attributes: {exclude:['senha']}
+            })
+            if (!users.length === 0){
+                return res.status(404).json({message: "Nenhum Usuário não encontrado."})
+            }
+            return res.json(users)
+
+        }catch(error){
+            return res.status(500).json({message: 'Erro ao buscar usuário: ', error: error.message})
+        }
+    },
+    // UPDATE - Atualizar Usuário
+    async updateUser (req, res){
+        try{
+            const {id} = req.params
+            const {nome, cpf, email, senha, tipo_usuario} = req.body
+            
+            if (!['locador','locatario'].includes(tipo_usuario)){
+                return res.status(400).json({message: 'Tipo de usuário inválido, Use "locador" ou "locatario"'})
+            }
+            const user = await Users.findByPk(id)
+            if (!user){
+                return res.status(404).json({message: "Usuário não encontrado."})
+            }
+            await user.update ({nome, cpf, email, senha, tipo_usuario})
+
+            const { senha: _, ...userAtualizado} = user.toJSON()
+            return res.json(userAtualizado)
+
+        }catch(error){
+            return res.status(500).json({message: 'Erro ao atualizar usuário: ', error: error.message})
+        }
+    },
+    // DELETE -Remover usuário
+    async deleteUser (req, res){
+        try{
+            const { id } = req.params
+            const user = await Users.findByPk(id)
+            if (!user){
+                return res.status(404).json({message: "Usuário não encontrado."})
+            }
+            await user.destroy()
+            return res.status(204).send()
+        }catch(error){
+            return res.status(500).json({message: 'Erro ao deletar usuário: ', error: error.message})
+        }
+    }
+}
