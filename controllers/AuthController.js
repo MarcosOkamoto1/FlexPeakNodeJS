@@ -15,6 +15,20 @@ module.exports = {
       if (!senhaValida) {
         return res.status(401).json({ menssage: "Senha Inválida" });
       }
+      const token = jwt.sign(
+        { id: user.id, tipo_usuário: user.tipo_usuário },
+        process.env.JWT_SECRET,
+        { expiresIn: "2h" },
+      );
+      return res.json({
+        token,
+        usuario: {
+          id: user.id,
+          nome: user.nome,
+          email: user.email,
+          tipo_usuário: user.tipo_usuário,
+        },
+      });
     } catch (error) {
       return res
         .status(500)

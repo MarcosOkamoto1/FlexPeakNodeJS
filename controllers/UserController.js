@@ -7,11 +7,9 @@ module.exports = {
     try {
       const { nome, cpf, email, senha, tipo_usuario } = req.body;
       if (!["locador", "locatario"].includes(tipo_usuario)) {
-        return res
-          .status(400)
-          .json({
-            message: 'Tipo de usuário inválido, Use "locador" ou "locatario"',
-          });
+        return res.status(400).json({
+          message: 'Tipo de usuário inválido, Use "locador" ou "locatario"',
+        });
       }
       const emailExistente = await Users.findOne({ where: { email } });
       if (emailExistente) {
@@ -114,11 +112,9 @@ module.exports = {
       const { nome, cpf, email, senha, tipo_usuario } = req.body;
 
       if (!["locador", "locatario"].includes(tipo_usuario)) {
-        return res
-          .status(400)
-          .json({
-            message: 'Tipo de usuário inválido, Use "locador" ou "locatario"',
-          });
+        return res.status(400).json({
+          message: 'Tipo de usuário inválido, Use "locador" ou "locatario"',
+        });
       }
       const user = await Users.findByPk(id);
       if (!user) {
