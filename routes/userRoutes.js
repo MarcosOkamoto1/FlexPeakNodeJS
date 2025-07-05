@@ -1,20 +1,20 @@
-const express = require ('express')
-const UserController = require('../controllers/UserController')
-const router = express.Router()
+const express = require("express");
+const UserController = require("../controllers/UserController");
+const router = express.Router();
 
 // Criar Usuário
-router.post ('/', UserController.createUser)
+router.post("/", UserController.createUser);
 // Listar todos os usuários
-router.get ('/', UserController.getAllUsers)
+router.get("/", UserController.getAllUsers);
 //Buscar Usuário por ID
-router.get('/:id', UserController.getUserById)
+router.get("/:id", UserController.getUserById);
 // Buscar por e-mail (/user/buscar/email?email=teste@email.com)
-router.get('/buscar/email', UserController.findByEmail)
+router.get("/buscar/email", UserController.findByEmail);
 //Buscar por nome (/user/buscar/name?name=ana)
-router.get('/buscar/name', UserController.findByName)
+router.get("/buscar/name", UserController.findByName);
 // Atualizar usuário
-router.put('/:id', UserController.updateUser)
+router.put("/:id", UserController.updateUser);
 // Deletar usuário
-router.delete('/:id', UserController.deleteUser)
+router.delete("/:id", UserController.deleteUser);
 
 module.exports = router;
