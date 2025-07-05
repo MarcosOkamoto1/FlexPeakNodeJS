@@ -7,9 +7,11 @@ module.exports = {
     try {
       const { nome, cpf, email, senha, tipo_usuario } = req.body;
       if (!["locador", "locatario"].includes(tipo_usuario)) {
-        return res.status(400).json({
-          message: 'Tipo de usuário inválido, Use "locador" ou "locatario"',
-        });
+        return res
+          .status(400)
+          .json({
+            message: 'Tipo de usuário inválido, Use "locador" ou "locatario"',
+          });
       }
       const emailExistente = await Users.findOne({ where: { email } });
       if (emailExistente) {
@@ -22,6 +24,8 @@ module.exports = {
         senha,
         tipo_usuario,
       });
+      //print (user)
+      //return (res.status(200))
       const { senha: _, ...userSemSenha } = user.toJSON();
       return res.status(201).json(userSemSenha);
     } catch (error) {
@@ -91,6 +95,7 @@ module.exports = {
       }
       const users = await Users.findAll({
         where: { nome: { [Op.like]: `%${nome}%` } },
+        //where:{[Op.like]: `%${nome}%`},
         attributes: { exclude: ["senha"] },
       });
       if (!users.length === 0) {
@@ -112,9 +117,11 @@ module.exports = {
       const { nome, cpf, email, senha, tipo_usuario } = req.body;
 
       if (!["locador", "locatario"].includes(tipo_usuario)) {
-        return res.status(400).json({
-          message: 'Tipo de usuário inválido, Use "locador" ou "locatario"',
-        });
+        return res
+          .status(400)
+          .json({
+            message: 'Tipo de usuário inválido, Use "locador" ou "locatario"',
+          });
       }
       const user = await Users.findByPk(id);
       if (!user) {
